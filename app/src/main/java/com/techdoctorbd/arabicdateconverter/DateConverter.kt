@@ -23,7 +23,7 @@ object DateConverter {
             year: Int,
             dayName: String,
             context: Context
-    ): String? {
+    ): String {
         var arabicDate: String? = null
         val arabicDateInt: Int?
 
@@ -70,10 +70,10 @@ object DateConverter {
             }
         }
 
-        return "${arabicDate!!.convertStringToBangla()} , ${getDayNamesInBangla(dayName)}"
+        return "${arabicDate?.convertStringToBangla()} , ${getDayNamesInBangla(dayName)}"
     }
 
-    private fun String.convertStringToBangla(): String? {
+    private fun String.convertStringToBangla(): String {
         var resultString = ""
         var replaceableChar: Char
 
@@ -92,7 +92,7 @@ object DateConverter {
         return resultString
     }
 
-    private fun getDayNamesInBangla(dayName: String): String? {
+    private fun getDayNamesInBangla(dayName: String): String {
         return when (dayName) {
             "saturday" -> dayNames[0]
             "sunday" -> dayNames[1]

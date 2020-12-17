@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         simpleDateFormat = SimpleDateFormat("dd MMMM yyyy , EEEE", Locale.getDefault())
         dateFormatForDay = SimpleDateFormat("EEEE", Locale.getDefault())
 
+        //to set custom date in calendar
+        calendarForCurrent.set(2020, 2, 12)
+
+        // to get date, month, year, day name from calendar
         val date = calendarForCurrent[Calendar.DAY_OF_MONTH]
         Log.d("Date: ", "$date")
         val month = calendarForCurrent[Calendar.MONTH]
@@ -39,11 +43,14 @@ class MainActivity : AppCompatActivity() {
         Log.d("Day of Week: ", dayOfWeek!!)
 
 
+        //to set date into text view
         tv_date_english.text = simpleDateFormat!!.format(calendarForCurrent.time)
 
+        //to convert selected date into hijri date
         val resultText = DateConverter.getDateInArabic(date, month + 1, year, dayOfWeek!!, this)
         tv_arabic_date.text = resultText
 
+        //to set range into calendar
         minDateCal.set(2019, 11, 29)
         maxDateCal.set(2020, 11, 16)
 
@@ -53,12 +60,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun openDatePicker() {
+    private fun openDatePicker() {
         val calendar = getInstance()
+
         if (mDay == 0) {
-            mYear = calendar.get(Calendar.YEAR)
-            mMonth = calendar.get(Calendar.MONTH)
-            mDay = calendar.get(Calendar.DAY_OF_MONTH)
+            mYear = 2020 //calendar.get(Calendar.YEAR)
+            mMonth = 2 //calendar.get(Calendar.MONTH)
+            mDay = 12 //calendar.get(Calendar.DAY_OF_MONTH)
         }
 
         val datePickerDialog = DatePickerDialog(this, { _, year, monthOfYear, dayOfMonth ->
